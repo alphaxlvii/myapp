@@ -2,17 +2,27 @@ import React from 'react';
 import { connect } from 'dva';
 import LoginPage from './LoginPage';
 
-function App(props, app) {
-  const { loginStatus } = app;
+function App(props) {
+  const loginStatus = props.loginStatus;
+
+  const loginProps = {
+    loginFunc(data){
+      props.dispatch ({type:'loginRemote', payload: data})
+    }
+  };
   return (
     <div>
-      { !loginStatus ? <LoginPage/>: 1}
+      { !loginStatus ? <LoginPage {...loginProps}/> : 1}
     </div>
   );
 }
 
 App.propTypes = {
 };
+function mapStateToProps(state, ownProps) {
+  return {
+    loginStatus: localStorage.loginStatus,
+  };
+}
 
-
-export default connect(({app}) => ({app}))(App);
+export default connect(mapStateToProps)(App);

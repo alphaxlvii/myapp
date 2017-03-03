@@ -23,6 +23,7 @@ export default {
     *loginRemote({ payload }, {call, put }) {
       let authorization = localStorage.authorization
       let loginStatus = localStorage.loginStatus
+      console.log(loginStatus);
       yield put({type: 'loginSuccess', payload: {
         authorization : authorization,
         user: {name: 'leo'}
@@ -35,8 +36,9 @@ export default {
       return { ...state, ...action.payload };
     },
     loginSuccess (state, action) {
+      localStorage.loginStatus = true
       return {
-        ...state, ...action.payload, login: true
+        ...state, ...action.payload, loginStatus: true
       }
     }
   },

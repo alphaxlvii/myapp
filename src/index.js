@@ -3,7 +3,7 @@ import './index.css';
 
 // 1. Initialize
 const app = dva();
-
+console.log(app);
 // 2. Plugins
 // app.use({});
 

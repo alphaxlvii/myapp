@@ -11,11 +11,7 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        const data =  login(values, {method: 'post'}).then(function(stories) {
-          if (data.success){
-            console.log(stories.data);
-          }
-        })
+        this.props.loginFunc(values)
       }
     });
   }
