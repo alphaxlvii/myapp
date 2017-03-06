@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'dva';
 import LoginPage from './LoginPage';
+import { getLocalStorage } from '../utils/helper';
 
 function App(props) {
-  const loginStatus = props.loginStatus;
+  const loginStatus = getLocalStorage('loginStatus');
+  const {dispatch} = props;
 
   const loginProps = {
     loginFunc(data){
-      props.dispatch ({type:'loginRemote', payload: data})
+      dispatch({type:'LoginModel/loginRemote', payload: data})
+      console.log('loginFunc')
     }
   };
   return (
@@ -19,10 +22,5 @@ function App(props) {
 
 App.propTypes = {
 };
-function mapStateToProps(state, ownProps) {
-  return {
-    loginStatus: localStorage.loginStatus,
-  };
-}
 
-export default connect(mapStateToProps)(App);
+export default connect()(App)
