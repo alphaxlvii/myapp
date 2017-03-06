@@ -2,16 +2,25 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'dva';
 import { login } from '../services/LoginService';
 import styles from './LoginPage.css';
+import { routerRedux } from 'dva/router';
 
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
+    const dispatch = this.props.dispatch
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.props.loginFunc(values)
+        login(values).then(function (res) {
+
+
+          //if(res.data.success){
+            localStorage.loginStatus = true
+          //}
+          dispatch(routerRedux.push('/'));
+        })
       }
     });
   }

@@ -1,26 +1,33 @@
 import React from 'react';
 import { connect } from 'dva';
 import LoginPage from './LoginPage';
+import IndexPage from './IndexPage';
 import { getLocalStorage } from '../utils/helper';
 
 function App(props) {
   const loginStatus = getLocalStorage('loginStatus');
-  const {dispatch} = props;
-
   const loginProps = {
-    loginFunc(data){
-      dispatch({type:'LoginModel/loginRemote', payload: data})
-      console.log('loginFunc')
-    }
+
   };
+  const indexProps = {
+  }
+
+  console.log(loginStatus)
+
   return (
-    <div>
-      { !loginStatus ? <LoginPage {...loginProps}/> : 1}
-    </div>
+
+       !loginStatus ? <LoginPage {...loginProps}/> : <IndexPage {...indexProps}/>
+
   );
 }
 
 App.propTypes = {
+
 };
+
+function mapDispatchToProps(dispatch) {
+  return {
+  };
+}
 
 export default connect()(App)
