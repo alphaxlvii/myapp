@@ -36,7 +36,7 @@ class IndexPage extends React.Component {
                 style={{ height: '100%' }}
               >
                 <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
-                  <Menu.Item key="1">用户管理</Menu.Item>
+                  <Menu.Item key="1"><a href="/user">用户管理</a></Menu.Item>
                   <Menu.Item key="2">option2</Menu.Item>
                   <Menu.Item key="3">option3</Menu.Item>
                   <Menu.Item key="4">option4</Menu.Item>
@@ -56,7 +56,7 @@ class IndexPage extends React.Component {
               </Menu>
             </Sider>
             <Content style={{ padding: '0 24px', minHeight: 280 }}>
-              Content
+              {this.props.children}
             </Content>
           </Layout>
         </Content>
